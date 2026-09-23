@@ -47,3 +47,33 @@ class ZipFail implements AndmeAllikas {
         return "Lugesin andmed aga mitte midagi aru ei saanud, vist on zip-pomm"
     }
 }
+
+//Kindlad dekoraatorid peavad kutsuma meetodeid wräpitud objektilt,
+// aga võivad lisada midagi omalt poolt tulemusele.
+//Dekoraatorid saavad käivitada lisandkäitumist kas enne või pärast
+// kutset wräpitud objektil olevale meetodile.
+class KrüpteerimisDekoraator extends FailiAndmeAllikas {
+    public kirjutaAndmed(data: string): void {
+        console.log(`Kirjutasin krüpteeritud andmed, süsteem valmis`)
+    }
+
+    public loeAndmed(): string {
+        return "Loetud on krüpteeritud andmed, need ütlevad 'õki kaki kommi nommi'"
+    }
+}
+
+function kliendikood9() {
+    let source = new FailiAndmeAllikas()
+    source.kirjutaAndmed("mingiFail.dat")
+    console.log(source.loeAndmed())
+    
+    source = new KrüpteerimisDekoraator()
+    source.kirjutaAndmed("krüpteeritudAndmed.bat")
+    console.log(source.loeAndmed())
+
+    source = new ZipFail(source)
+    source.kirjutaAndmed("pakitudAndmed.cat")
+    console.log(source.loeAndmed())
+}
+
+kliendikood9
