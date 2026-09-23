@@ -76,3 +76,12 @@ class Telekas implements Seade {
         console.log(`Kanal on number ${this.kanal}`)
     }
 }
+
+const telekas = new Telekas()
+
+const telekapult = new Telekapult(telekas)
+
+telekapult.lülitaSisseVälja()
+telekapult.heliÜles()
+telekapult.heliÜles()
+telekapult.kanalSuuremaks()
