@@ -55,6 +55,6 @@ class Car {
     }
     
     get_odometer_stats(): void {
-        
+        console.log(`I dont know what I need to show here.`)
     }
 }
