@@ -30,13 +30,14 @@ class PuuLiik {
 class PuuVabrik {
 
     static puuLiigid: PuuLiik[] = []
-    public puuTüüp(nimi: string, värv: string, pinnavorm: string): PuuLiik {
+    public static puuTüüp(nimi: string, värv: string, pinnavorm: string): PuuLiik {
         let tüüp = PuuVabrik.puuLiigid.find(p => p.nimi == nimi && p.värv == värv && p.pinnavorm == pinnavorm)
         if (tüüp == null){
             tüüp = new PuuLiik(nimi, värv, pinnavorm)
             PuuVabrik.puuLiigid.push(tüüp)
         }
         return tüüp; 
+    
     }
 }
 
@@ -45,10 +46,10 @@ class Puu {
     y: number;
     tüüp: PuuLiik;
 
-    constructor(x: number, y: number, type: PuuLiik) {
+    constructor(x: number, y: number, tüüp: PuuLiik) {
         this.x = x
         this.y = y
-        this.tüüp = this.tüüp;
+        this.tüüp = tüüp;
     }
 
     draw(canvas: HTMLCanvasElement): void {
@@ -57,42 +58,45 @@ class Puu {
 }
 
 class Mets {
-    puudMetsas: Puu[]
+    puudMetsas: Puu[] = [];
 
     public istutaPuu(x: number, y: number, nimi: string, värv: string, pinnavorm: string): void {
-        	let tüüp: PuuLiik = PuuVabrik.puuTüüp(nimi, värv, pinnavorm)
+        	let tüüp: PuuLiik = PuuVabrik.puuTüüp(nimi,värv,pinnavorm)
             let puu = new Puu(x, y, tüüp)
             this.puudMetsas.push(puu)
     }
-    public drawCanvas(canvas: HTMLCanvasElement): void {
+    drawCanvas(canvas: HTMLCanvasElement): void {
         this.puudMetsas.forEach(tree => {tree.draw(canvas)})
-        console.log("DrawCanvas")
     }
+
+
 }
 
-const canvas = document.getElementById("canvas") as HTMLCanvasElement
-const mets = new Mets()
+const canvas = document.getElementById("canvas") as HTMLCanvasElement;
+const mets = new Mets();
 
 mets.istutaPuu(
     50,
     100,
     "Tamm",
-    "Tumepruun",
+    "Roheline",
     "tamm.png"
 )
+
 mets.istutaPuu(
-    150,
+    50,
     100,
-    "Mänd",
-    "green",
-    "mänd.png"
+    "Kask",
+    "HeleRoheline",
+    "kask.png"
 )
+
 mets.istutaPuu(
-    200,
-    130,
-    "Jaapani Mänd",
-    "roosa",
+    50,
+    100,
+    "Jaapani Kirss",
+    "Roosa",
     "sakura.png"
 )
 
-mets.drawCanvas(canvas)
+mets.drawCanvas(canvas);
