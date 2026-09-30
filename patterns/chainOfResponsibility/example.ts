@@ -1,6 +1,15 @@
+//Chain of responsibility, on nagu if-else ahel. 
+//Kui üks töötleja ei saa ülesannet lahendada, siis saadetakse see teisele jne
+
 //Kõikidel töötlejatel peab olema ühine liides.
 interface TelefonitoeLiides {
     lahendaPäring(päring: Telefonipäring): void
+}
+
+//See klass kirjeldab kasutaja saadetud päringut.
+//Päring sisaldab tüüpi ja kirjeldust.
+class Telefonipäring {
+    constructor(public tüüp: string, public kirjeldus: string) {  }
 }
 
 //See on kõikide töötlejate baasklass
@@ -69,11 +78,7 @@ class Tehnilinespetsialist extends TelefonitoeTöötleja {
     }
 }
 
-//See klass kirjeldab kasutaja saadetud päringut.
-//Päring sisaldab tüüpi ja kirjeldust.
-class Telefonipäring {
-    constructor(public tüüp: string, public kirjeldus: string) {  }
-}
+
 
 //See klass loob kogu tugisüsteemi.
 //Tema ülesanne on töötlejad õigesse järjekorra panna
