@@ -99,7 +99,7 @@ class Telefonirakendus {
 
     käivita(): void {
         const tugiSüsteem = this.looTugiSüsteem()
-
+        
         //Esimene päring, mida saab automaatvastaja lahendada
         const esimenePäring = new Telefonipäring("staatuseNumber", "Kas minu number on aktiivne?")
         tugiSüsteem.lahendaPäring(esimenePäring)

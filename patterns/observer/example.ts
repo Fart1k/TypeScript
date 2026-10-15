@@ -33,7 +33,7 @@ class KindelSubjekt implements Subjekt {
         if (jälgijaIndex === -1) {
             return console.log(`Subjekt: Jälgijat nimega ${jälgija} ei leitud`)
         }
-        this.jälgijad.splice(jälgija, 1)
+        this.jälgijad.splice(jälgijaIndex)
         console.log("Subjekt: Jälgija lahkus")
     }
 
@@ -75,6 +75,22 @@ class KindelKuulajaA implements Jälgija {
 
 class KindelKuulajaB implements Jälgija {
     public uuendaMind(subjekt: Subjekt): void {
-        
+        if (subjekt instanceof KindelSubjekt && subjekt.olek === 0 || subjekt.olek >= 2) {
+            console.log("KindelJälgijaB reageeris juhtumile")
+        }
     }
 }
+
+//Kliendikood
+const subjekt = new KindelSubjekt()
+const jälgija1 = new KindelKuulajaA()
+subjekt.attach(jälgija1)
+const jälgija2 = new KindelKuulajaB()
+subjekt.attach(jälgija2)
+
+subjekt.mingiÄriLoogika()
+subjekt.mingiÄriLoogika()
+
+subjekt.detach(jälgija2)
+
+subjekt.mingiÄriLoogika()
