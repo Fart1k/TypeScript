@@ -75,7 +75,7 @@ class KindelKuulajaA implements Jälgija {
 
 class KindelKuulajaB implements Jälgija {
     public uuendaMind(subjekt: Subjekt): void {
-        if (subjekt instanceof KindelSubjekt && subjekt.olek === 0 || subjekt.olek >= 2) {
+        if (subjekt instanceof KindelSubjekt && (subjekt.olek === 0 || subjekt.olek >= 2)) {
             console.log("KindelJälgijaB reageeris juhtumile")
         }
     }
